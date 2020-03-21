@@ -8,3 +8,8 @@ Curated readings/vlogs under Computer Science and Software Engineering
 - [Setting up a repository](https://www.atlassian.com/git/tutorials/setting-up-a-repository "Setting up a repository")
 - [Collaborating with Git](https://www.atlassian.com/git/tutorials/syncing "Collaborating")
 - [Advanced Tips](https://www.atlassian.com/git/tutorials/advanced-overview "Advanced Tips")
+- My Daily Git Commands(https://medium.com/@cereblanco/daily-git-commands-310966e73bef)
+
+### Notes
+
+- Docker []
