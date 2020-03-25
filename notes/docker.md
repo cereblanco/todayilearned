@@ -5,23 +5,27 @@
 
 ## Docker Images
 
-*Show all images*
+_Show all images_
+
 ```bash
 $ docker image ls
 ```
 
-*Show the layers of an image*
+_Show the layers of an image_
+
 ```bash
 $ docker history REPOSITORY[:tag]
 ```
 
 Notes:
+
 - An image consists of a stack of layers
 - `Layers` can be compared to `commits` in git
 - Your machine downloads these `layers` in docker cache
 - Only one copy of commit hash is downloaded and stored in docker cache. This saves up space in your machine
 
-*Show details of an image*
+_Show details of an image_
+
 ```bash
 $ docker inspect REPOSITORY[:tag]
 ```
@@ -31,17 +35,19 @@ $ docker inspect REPOSITORY[:tag]
 - Image **tag** is like a pointer to a specific layer in an image
 - Tags are greatly used for versioning
 
-*Tagging an image*
+_Tagging an image_
+
 ```bash
 $ docker tag SOURCE_IMAGE[:tag] TARGET_IMAGE[:tag]
 ```
 
 ## Building a Dockerfile
+
 ### Tips:
 
 - Sequence of commands is important as each command represents a layer in docker cache; **place on top of the Dockerfile the commands that change the least, and at the bottom of the file the commands that change the most**
 
-- Combine related and multiple commands in one layer. We use the `&&` to combine or  chain one command after another. This saves time and space
+- Combine related and multiple commands in one layer. We use the `&&` to combine or chain one command after another. This saves time and space
 
 ## Building docker image
 
@@ -51,34 +57,52 @@ $ docker build -t docker-tag-here .
 # `.` (dot) means build the Dockerfile in the current directory*
 ```
 
-
 ## Cleaning up docker images
 
-To save some space, here are some commands to cleanup unnecessary images 
+To save some space, here are some commands to cleanup unnecessary images
+
+_Clean up images_
 
 ```bash
-$ docker image prune to clean up images
-$ docker systen prune to clean up everything
-$ docker image prune -a  to remove all images you are not using
+$ docker image prune
+```
+
+_Clean up everything_
+
+```bash
+$ docker systen prune
+```
+
+_Remove all unused images_
+
+```bash
+$ docker image prune -a
+```
+
+_List all images_
+
+```bash
 $ docker image ls -a
 ```
 
 ## Docker Containers
-
 
 - `Containers` are immutable and ephemeral
 - they dont change; thus if change is needed, dispose the current and just deploy a new one
 - how about persistent data? We use `Volumes` and `Bind Mounts`
 
 #### Volumes
+
 - volumes can outlive a container, this is good for persistent data such as `databases`
 
-*Show all volumes*
+_Show all volumes_
+
 ```bash
 $ docker volume ls
 ```
 
-*Example from mysql image*
+_Example from mysql image_
+
 ```yml
 VOLUME /var/lib/mysql
 ```
@@ -89,40 +113,56 @@ VOLUME /var/lib/mysql
 - Can't use in docker, but must at container run
 
 Running a container with your host directory synced with container directory
+
 ```bash
 $ ... -v /host/path:/container/path
 ```
 
 #### Other commands
 
-*List the running containers*
+_List the running containers_
+
 ```bash
 $ docker container ls
 ```
 
-* Run a container from an image; name the running container with `--name`;
-expose port 80 of the container to port 5000 on host*
-
 ```bash
-$ docker container run --name c-p 5000:80 <image>
+$ docker ps | grep <filter-here>
 ```
 
-*Stop container through SIGTERM*
+_List all container_
+
 ```bash
-$ docker container stop  <name>
+$ docker ps -a
 ```
 
-*Stop container through SIGKILL*
+_Run a container from an image; name the running container with `--name`;
+expose port 80 of the container to port 5000 on host_
+
 ```bash
-$ docker container kill <name>
+$ docker container run --name <container-name> 5000:80 <image>
 ```
 
-*Show the logs of the container*
+_Stop container through SIGTERM_
+
+```bash
+$ docker container stop  <container-id>
+```
+
+_Stop container through SIGKILL_
+
+```bash
+$ docker container kill <container-id>
+```
+
+_Show the logs of the container_
+
 ```bash
 $ docker logs -f <container-id> -t
 ```
 
-*Go inside the container*
+_Go inside the container_
+
 ```bash
 $ docker exec -it <container-id> bash
 ```
