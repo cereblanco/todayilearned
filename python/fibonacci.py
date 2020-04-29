@@ -1,7 +1,7 @@
 """ Different Fibonacci Implementations
 1. Recursive fibonacci
 2. Memoize version of recursive fibonacci -> improves recursive solution by using cache
-3. Bottom-up implementation of fibonnaci -> optimized! solves `maximum recursion depth exceeded` in 1 & 2
+3. Bottom-up implementation of fibonnaci -> optimized! solves `maximum recursion depth exceeded` issue in 1 & 2
 4. Bottom-up implementation of fibonnaci that uses constant space complexity
 """
 
@@ -48,7 +48,7 @@ if __name__ == "__main__":
     # uncomment to try solution 1
     # print(fib_recursive(1000))
 
-    # uncomment to try solution 1
+    # uncomment to try solution 2
     # print(fib_memoize(1000))
     print(fib_bottom_up(1000))
     print(fib_bottom_up_o1_space(1000))
