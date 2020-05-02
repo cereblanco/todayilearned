@@ -2,6 +2,7 @@
 
 1. [Images](#docker-images)
 2. [Containers](#docker-containers)
+3. [Docker Compose](#docker-compose)
 
 ## Docker Images
 
@@ -165,4 +166,47 @@ _Go inside the container_
 
 ```bash
 $ docker exec -it <container-id> bash
+```
+
+## Docker Compose
+
+- Configure relationships between containers
+- or Configure multiple containers in one file
+- YAML formatted;
+- Example: https://github.com/cereblanco/todayilearned/blob/master/notes/docker-compose.yml
+- Google for updated examples
+
+### CLI docker-compose tool
+
+_Setup containers and networks and volumes_
+
+```bash
+$ docker-compose up
+```
+
+_To run in the background, add args **-d**_
+
+```bash
+$ docker-compose up -d
+```
+
+_To go inside container/service_
+
+```bash
+$ docker-compose exec <service_name> bash
+```
+or
+```bash
+$ docker-compose exec -it <container-id> bash
+```
+
+_Stop all containers and remove networks and volumes_
+
+```bash
+$ docker-compose down
+```
+
+_Checkout help_
+```bash
+$ docker-compose -h
 ```
