@@ -119,6 +119,15 @@ Running a container with your host directory synced with container directory
 $ ... -v /host/path:/container/path
 ```
 
+#### Run a container
+
+Run a container from an image, name the running container
+<name-here> and expose port 5000 externally,
+mapped to port 80 inside the container.
+
+```bash 
+$ docker run --name <name-here> -p 5000:80 <image>
+
 #### Other commands
 
 _List the running containers_
