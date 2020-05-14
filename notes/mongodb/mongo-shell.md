@@ -176,7 +176,7 @@ db.projects.insert([
         "name": "Archived Project",
         "description":"This is an archived project, will be inserted in bulk",
         "status": "archived",
-        "stars": "1000"
+        "stars": 1000
     },
 ])
 ```
@@ -192,9 +192,11 @@ db.projects.find({$or:[{"status": "draft"}, {"status":"published"}]}).pretty()
 Filter with `lt` less than and `gt` greater than
 ```javascript
 // stars less than 500
+// will output Draft Project
 db.projects.find({"stars": {$lt: 500}}).pretty();
 
 // stars greater than 500
+// will output Published Project & Archived Project
 db.projects.find({"stars": {$gt: 500}}).pretty();
 
 ```
@@ -207,13 +209,13 @@ db.projects.find().sort({"stars": 1 }).pretty();
 
 List and sort by `stars` in descending order `{"stars": -1}`
 ```javascript
-// projects in descending order where their stars are is 0, 700, 1000 correspondingly
+// projects in descending order where their stars are is 1000, 700, 0 correspondingly
 db.projects.find().sort({"stars": -1 }).pretty();
 ```
 
 ### RENAME
 
-Rename a field using `$rename`, and `$multi` to update multiple entries
+Rename a field using `$rename`, and `$multi` to update all/multiple matched entries
 ```javascript
 // rename stars field with number_of_claps
 db.projects.update({"stars": {$exists: true}}, {$rename: {"stars":"number_of_claps"}}, { multi: true });
