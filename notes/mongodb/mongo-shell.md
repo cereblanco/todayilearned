@@ -106,7 +106,7 @@ db.projects.update(
     {"description":"Update description, but remove field name"}
 )
 
-// it will updated the project, removing the name which previously exist
+// it will update the project, removing the name which previously exists
 
 {
     "_id" : ObjectId("5ebce8d6c94bcf9b83e2f21c"),
@@ -134,7 +134,7 @@ db.projects.update(
 }
 ```
 
-Upsert entry; Now we know an entry exists; running upsert will not create duplicate but update the existing entry
+Upsert entry; we know an entry is existing; running upsert will not create duplicate but update the existing entry
 ```
 db.projects.update(
     {"_id" : ObjectId("5ebcf1904548de076e1dd9bf")},
@@ -148,7 +148,7 @@ db.projects.update(
 }
 ```
 
-Remove an entry. In real world, use with warning, better if just create a status field
+Remove an entry. In real world, use with warning, better if just create a `status` field for archived,active etc
 ```
 // will delete the entries inserted previously
 db.projects.remove({"_id": ObjectId("5ebd043d03263e81820e55b1")});
@@ -180,12 +180,11 @@ db.projects.insert([
 ])
 ```
 
-
 ### FILTER / SORT
 
-Filter by field `stars` with `$or`
+Filter by field `status` with `$or`
 ```
-// select projects with status is draft or published only
+// select projects where status is draft or published
 db.projects.find({$or:[{"status": "draft"}, {"status":"published"}]}).pretty()
 ```
 
@@ -213,7 +212,7 @@ db.projects.find().sort({"stars": -1 }).pretty();
 
 ### RENAME
 
-Rename a field with `$rename`
+Rename a field using `$rename`, and `$multi` to update multiple entries
 ```
 // rename stars field with number_of_claps
 db.projects.update({"stars": {$exists: true}}, {$rename: {"stars":"number_of_claps"}}, { multi: true });
