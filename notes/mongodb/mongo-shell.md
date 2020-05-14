@@ -9,53 +9,53 @@
 ### SHOW
 
 Connect to mongo server
-```
+```javascript
 mongo
 ```
 
 Show all databases
-```
+```javascript
 show dbs
 ```
 
 Use a database
-```
+```javascript
 use database_name
 ```
 
 Show the existing database you are using
-```
+```javascript
 db
 ```
 
 Show all collections in the database
-```
+```javascript
 show collections
 ```
 
 Show entries in a collection named `projects`
-```
+```javascript
 db.projects.find()
 ```
 better with prettify-ed result
-```
+```javascript
 db.projects.find().pretty()
 ```
 
 Limit the number of results to 5
-```
+```javascript
 db.projects.find().limit(5).pretty()
 ```
 
 Show the total entries in projects
-```
+```javascript
 db.projects.find().count()
 ```
 
 ### INSERT-UPDATE-UPSERT-DELETE
 
 Inserting an entry to a collection
-```
+```javascript
 db.projects.insert({"name": "Test project"})
 
 // it will output something with unique object id
@@ -64,7 +64,7 @@ db.projects.insert({"name": "Test project"})
 ```
 
 Find entry with specific filter, say the unique object _id
-```
+```javascript
 db.projects.find({"_id": ObjectId("5ebce8d6c94bcf9b83e2f21c")}).pretty()
 
 // it will find the entry inserted previously
@@ -74,7 +74,7 @@ db.projects.find({"_id": ObjectId("5ebce8d6c94bcf9b83e2f21c")}).pretty()
 ```
 
 Update existing project; first parameter in {} is a match, second parameter in {} is the new value
-```
+```javascript
 db.projects.update({"_id": ObjectId("5ebce8d6c94bcf9b83e2f21c")}, {"name":"Updated name"})
 
 // here is an updated name
@@ -84,7 +84,7 @@ db.projects.update({"_id": ObjectId("5ebce8d6c94bcf9b83e2f21c")}, {"name":"Updat
 ```
 
 Add new field without overwriting the existing fields! operative word: `$set`
-```
+```javascript
 db.projects.update(
     {"_id": ObjectId("5ebce8d6c94bcf9b83e2f21c")},
     {$set:{"description":"Update the description without removing name"}}
@@ -100,7 +100,7 @@ db.projects.update(
 ```
 
 Removing the `$set` will remove existing fields
-```
+```javascript
 db.projects.update(
     {"_id": ObjectId("5ebce8d6c94bcf9b83e2f21c")},
     {"description":"Update description, but remove field name"}
@@ -115,7 +115,7 @@ db.projects.update(
 ```
 
 Upsert entry; insert new entry if a match does NOT exist yet
-```
+```javascript
 db.projects.update(
     {"_id" : ObjectId("5ebcf1904548de076e1dd9bf")},
     {
@@ -135,12 +135,13 @@ db.projects.update(
 ```
 
 Upsert entry; we know an entry is existing; running upsert will not create duplicate but update the existing entry
-```
+```javascript
 db.projects.update(
     {"_id" : ObjectId("5ebcf1904548de076e1dd9bf")},
     {"name": "Upsert existing project", "description": "This is an existing project, it will upsert"},
     {"upsert": true}
 )
+// since the filter matched one, it updated the old entry
 {
     "_id" : ObjectId("5ebcf1904548de076e1dd9bf"),
     "name" : "Upsert existing project",
@@ -149,15 +150,15 @@ db.projects.update(
 ```
 
 Remove an entry. In real world, use with warning, better if just create a `status` field for archived,active etc
-```
+```javascript
 // will delete the entries inserted previously
 db.projects.remove({"_id": ObjectId("5ebd043d03263e81820e55b1")});
 db.projects.remove({"_id": ObjectId("5ebce8d6c94bcf9b83e2f21c")});
-
 ```
 
 Insert in bulk
-```
+```javascript
+// will use these entries in the upcoming actions
 db.projects.insert([
     {
         "name": "Draft Project",
@@ -183,13 +184,13 @@ db.projects.insert([
 ### FILTER / SORT
 
 Filter by field `status` with `$or`
-```
+```javascript
 // select projects where status is draft or published
 db.projects.find({$or:[{"status": "draft"}, {"status":"published"}]}).pretty()
 ```
 
 Filter with `lt` less than and `gt` greater than
-```
+```javascript
 // stars less than 500
 db.projects.find({"stars": {$lt: 500}}).pretty();
 
@@ -199,13 +200,13 @@ db.projects.find({"stars": {$gt: 500}}).pretty();
 ```
 
 List and sort by `stars` in ascending order `{"stars": 1}`
-```
+```javascript
 // projects in ascending order where their stars are is 0, 700, 1000 correspondingly
 db.projects.find().sort({"stars": 1 }).pretty();
 ```
 
 List and sort by `stars` in descending order `{"stars": -1}`
-```
+```javascript
 // projects in descending order where their stars are is 0, 700, 1000 correspondingly
 db.projects.find().sort({"stars": -1 }).pretty();
 ```
@@ -213,7 +214,7 @@ db.projects.find().sort({"stars": -1 }).pretty();
 ### RENAME
 
 Rename a field using `$rename`, and `$multi` to update multiple entries
-```
+```javascript
 // rename stars field with number_of_claps
 db.projects.update({"stars": {$exists: true}}, {$rename: {"stars":"number_of_claps"}}, { multi: true });
 ```
