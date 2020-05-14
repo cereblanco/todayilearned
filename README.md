@@ -13,4 +13,5 @@ Curated readings/vlogs under Computer Science and Software Engineering
 ### Notes
 - [Docker](https://github.com/cereblanco/todayilearned/blob/master/notes/docker/docker.md)
 - [Docker Swarm](https://github.com/cereblanco/todayilearned/blob/master/notes/docker/docker-swarm.md)
+- [MongoDB-In-Action](https://github.com/cereblanco/todayilearned/blob/master/notes/mongodb/mongo-shell.md)
 - [S3 Cheatsheet](https://gist.github.com/cereblanco/5d1dc6687d426d644c02141d0de90ef0)
