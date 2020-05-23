@@ -1,8 +1,8 @@
 """ Different Fibonacci Implementations
 1. Recursive fibonacci
 2. Memoize version of recursive fibonacci -> improves recursive solution by using cache
-3. Bottom-up implementation of fibonnaci -> optimized! solves `maximum recursion depth exceeded` issue in 1 & 2
-4. Bottom-up implementation of fibonnaci that uses constant space complexity
+3. Bottom-up implementation of fibonacci -> optimized! solves `maximum recursion depth exceeded` issue in 1 & 2
+4. Bottom-up implementation of fibonacci that uses constant space complexity
 """
 
 
