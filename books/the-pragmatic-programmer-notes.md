@@ -69,3 +69,21 @@ Don't just hear and accept. Analyze, Clarify, Ask questions (Do it politely), Lo
 1. Get back to people. Answer their inquiries, just how someone answers patiently your newbie inquiries
 
 **Challenge-to-self:** Follow those stated above
+
+### Tip 11: Don't Repeat Yourself (DRY) 
+
+4I's
+- Imposed duplication. Developers feel they have no choice—the environment seems to require duplication.
+- Inadvertent duplication. Developers don't realize that they are duplicating information.
+- Impatient duplication. Developers get lazy and duplicate because it seems easier.
+- Inter-developer duplication. Multiple people on a team (or on different teams) duplicate a piece of information.
+
+**Challenge-to-self:** DRY
+
+### Tip 12: Make It Easy to Reuse
+
+### Tip 13: Eliminate Effects Between Unrelated Things
+
+**Orthogonality**
+- "We want to design components that are self-contained: independent, and with a single, well-defined purpose..."
+- "When components are isolated from one another, you know that you can change one without having to worry about the rest."
