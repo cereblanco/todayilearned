@@ -20,9 +20,9 @@
 
 **But**
 
-- DOESN'T work well with multi-thread CPU bound
+- :x: DOESN'T work well with multi-thread CPU bound
 
-- DOESN't take advantage of multi-cores
+- :x: DOESN't take advantage of multi-cores
 
 - because of the **GIL** (when an object are shared within multiple threads, how does CPython locks the reference count?)
 
@@ -43,7 +43,7 @@
 
 **But**
 
-- for multi-threaded CPU-bound/ multi-processors, they become single-threaded, even slower because of the overhead of the acquiring/releasing of the GIL
+- :x: for multi-threaded CPU-bound/ multi-processors, they become single-threaded, even slower because of the overhead of the acquiring/releasing of the GIL
 
 Resources:
 
