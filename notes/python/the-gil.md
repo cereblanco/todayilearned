@@ -6,24 +6,16 @@
 **CPython uses reference counting for memory management**
 
 - it keeps track a counter--that counts how many references to an object exists
-
 - it increments the counter if we add a code that references the object
-
 - it decrements the counter if the code is done using or has finished referencing the object
-
 - when the reference counter is zero (this means no more processes reference the object), then we cleanup/release the memory of the object
-
 - :white_check_mark: works perfectly with single-thread
-
 - :white_check_mark: works well with with multi-threads IO-bound
-
 
 **But**
 
 - :x: DOESN'T work well with multi-thread CPU bound
-
 - :x: DOESN't take advantage of multi-cores
-
 - because of the **GIL** (when an object are shared within multiple threads, how does CPython locks the reference count?)
 
 
@@ -31,14 +23,10 @@
 ## The GIL
 
 - ensures that only one thread runs in the interpreter at a time
-
     - when a thread is running it locks the GIL
-
     - when the thread has finished running, it releases the GIL so another thread can acquire it and start running
-
 -  **this prevents deadlocks**
 -  **this prevents race conditions complications** 
-
 - :white_check_mark: this works OK with multi-threads IO-bound as the GIL is being shared when a thread is waiting for IO
 
 **But**
