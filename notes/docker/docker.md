@@ -39,5 +39,3 @@
 ## Docker Compose [WIP]
 - Configure relationships between containers
 - Configure multiple containers in one file
-- YAML formatted;
-- Example: https://github.com/cereblanco/todayilearned/blob/master/notes/docker-compose.yml
