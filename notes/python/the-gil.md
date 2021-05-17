@@ -5,7 +5,7 @@
 
 **CPython uses reference counting for memory management**
 
-- it keeps track a counter--that counts how many references to an object exists
+- it keeps track a counter--that counts how many references to an object exist
 - it increments the counter if we add a code that references the object
 - it decrements the counter if the code is done using or has finished referencing the object
 - when the reference counter is zero (this means no more processes reference the object), then we cleanup/release the memory of the object
