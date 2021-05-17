@@ -6,7 +6,7 @@ Some personal notes and scribbles
 - [Javascript](https://github.com/cereblanco/todayilearned/tree/master/javascript)
 - [Python](https://github.com/cereblanco/todayilearned/tree/master/python)
 - [Serverless](https://github.com/cereblanco/lambda-experiments)
-- [MongoDB](https://github.com/cereblanco/pymongo-transactions)
+- [MongoDB: PyMongo Transactions](https://github.com/cereblanco/pymongo-transactions)
 ### Blog
 - [My Daily Git Commands](https://medium.com/@cereblanco/daily-git-commands-310966e73bef)
 
