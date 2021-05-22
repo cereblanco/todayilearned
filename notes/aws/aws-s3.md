@@ -25,7 +25,7 @@ There are three possible ways to access/manage S3 and its objects
 
   - If we want to allow third parties to have temporary access to an S3 object, the best option would be to use [Pre-signed URLs](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-presigned-urls.html). With presigned URLs, clients can directly talk to S3 instead of talking to our media service and our media service relaying the requests to S3.
 
-  - For instance, in our illustration below, all requests from the client pass through our media service, and our media service talks to S3 on client's behalf. This flow introduces unnecessary load and cost on our media service; imagine all the files that will pass through it and the bandwidth and resources it must sustain to support upload and download operations.
+  - For instance, in our illustration below, all requests from the client pass through our media service, and our media service talks to S3 on client's behalf. This flow spawns heavy load on our media service; imagine all the files that will pass through it and the resources (network bandwidth, memory/cpu usage, ...) it must sustain to support upload and download operations.
 
   **WITHOUT Pre-signed URLs**
 
