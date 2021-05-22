@@ -59,8 +59,8 @@ There are three possible ways to access/manage S3 and its objects
             bucket_name: str, # name of the bucket
             object_key: str, # unique identifier of the object,
             expires_in: int, # ranges from 1 second to 604800 seconds
-            content_type: Optional[str], # if not present, then the content-type will be deduced from file extension
-            download_filename: Optional[str], # if not present, the object key will be used
+            content_type: Optional[str], # if not present, then the content-type is deduced from file extension
+            download_filename: Optional[str], # if not present, the object key is used
     ) -> str:
 
         client = boto3.client(
@@ -71,7 +71,7 @@ There are three possible ways to access/manage S3 and its objects
         )
         try:
             upload_url = client.generate_presigned_url(
-                ClientMethod="put_object",
+                ClientMethod="put_object", # `put_object` for upload, `get_object` for download
                 Params={
                     "Bucket": bucket_name,
                     "Key": object_key,
@@ -92,7 +92,7 @@ There are three possible ways to access/manage S3 and its objects
     ```python
     import requests
 
-    # Use the presigned url in our client app
+    # Upload a file using a presigned url in our client app
     with open('mountain.png', 'rb') as f:
         result = requests.put(upload_url, data=f)
         print(result, result.content)
