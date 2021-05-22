@@ -14,7 +14,7 @@ Some personal notes and scribbles
 
 ### Notes
 - AWS
-	- [S3](https://github.com/cereblanco/todayilearned/blob/master/notes/aws/aws-s3.md)
+	- [S3 Presigned URLs](https://github.com/cereblanco/todayilearned/blob/master/notes/aws/aws-s3.md)
     - [awscli Cheatsheet](https://gist.github.com/cereblanco/5d1dc6687d426d644c02141d0de90ef0)
 - Docker
 	- [Notes on Docker](https://github.com/cereblanco/todayilearned/blob/master/notes/docker/docker.md)
