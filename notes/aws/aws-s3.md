@@ -38,35 +38,62 @@ There are three possible ways to access/manage S3 and its objects
     ![WITH Pre-signed URLs](presigned-urls-flow.png)
 
   - We can use **SDKs** or **AWS CLI** to generate presigned-urls.
+  
+  > IMPORTANT!
+  > - Presigned urls have life spans.
+  > - The client can only use them before they expire.
 
   - Here's a snippet using `boto3`
 
     ```python
+    import logging
+    from typing import Optional
+
+    import boto3
+    from botocore.exceptions import ClientError
+
+
     # Generate presigned url in our media service
-    def generate_presigned_url():
-        client = boto3.client(
-            "s3",
-            # aws_access_key_id=AWS_ACCESS_KEY_ID,
-            # aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-            'us-east-1',
-        )
-        url = client.generate_presigned_url(
-            ClientMethod="put_object",
-            Params={
-                "Bucket": AWS_S3_BUCKET,
-                "Key": "mountain.png",
-                "ContentDisposition": "attachment;filename=new_filename_here.png",
-                "ContentType": "image/png",
-            },
-            ExpiresIn="3600", # 1 hour
-            HttpMethod="put", 
-        )
-        return url
+    def generate_presigned_url(
+            bucket_name: str, # name of the bucket
+            object_key: str, # unique identifier of the object,
+            expires_in: int, # ranges from 1 second to 604800 seconds
+            content_type: Optional[str], # if not present, the content-type is deduced from filename extension
+            download_filename: Optional[str], # if not present, the object key is used
+        ) -> str:
+
+            client = boto3.client(
+                "s3",
+                aws_access_key_id=AWS_ACCESS_KEY_ID,
+                aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+                'us-east-1', 
+            )
+            try:
+                upload_url = client.generate_presigned_url(
+                    ClientMethod="put_object",
+                    Params={
+                        "Bucket": bucket_name,
+                        "Key": object_key,
+                        # Uncomment to use the optional parameters
+                        # "ContentDisposition": f"attachment;filename={download_filename}",
+                        # "ContentType": content_type,
+                    },
+                    ExpiresIn=expires_in, 
+                    HttpMethod="put", 
+                )
+            except ClientError as e:
+                logging.error(e)
+                return None
+
+            return upload_url
     ```
 
-    ``` python
+    ```python
+    import requests
+
     # Use the presigned url in our client app
     with open('mountain.png', 'rb') as f:
-        result = requests.put(url, data=f)
+        result = requests.put(upload_url, data=f)
         print(result, result.content)
+
     ```
