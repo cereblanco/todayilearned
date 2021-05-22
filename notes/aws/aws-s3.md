@@ -67,7 +67,7 @@ There are three possible ways to access/manage S3 and its objects
             "s3",
             aws_access_key_id=AWS_ACCESS_KEY_ID,
             aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-            'us-east-1', 
+            'us-east-1',
         )
         try:
             upload_url = client.generate_presigned_url(
