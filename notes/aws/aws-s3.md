@@ -31,7 +31,7 @@ There are three possible ways to access/manage S3 and its objects
 
     ![WITHOUT Pre-signed URLs](media-service-as-proxy.png)
 
-  - The use of presigned URLs resolve this issue. As illustrated below, the client requests for upload URL, then the media service responds with a presigned upload url. The client can then use this presigned url to upload a file on S3. Downloading a file follows the same flow.
+  - The use of presigned URLs resolves this issue. As illustrated below, the client requests for upload URL then the media service responds with a presigned upload url. The client can then use this presigned url to upload a file on S3. Downloading a file follows the same flow.
 
   **WITH Pre-signed URLs**
 
