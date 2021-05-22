@@ -16,23 +16,21 @@ There are three possible ways to access/manage S3 and its objects
 
 #### 3. Using SDKs
 
-- If we want to use S3 in our *application/server* programatically, we can use *SDK*s. Best option for `automating` pre-processing/post-processing the objects in S3. Operative word is `automate`.
+- If we want to use S3 in our *application/server* programatically, we can use *SDK*s. Best option for *automating* pre-processing/post-processing of the objects in S3. Operative word is `automate`.
 
   - python -> [boto3](https://github.com/boto/boto3)
   - javascript -> [aws-sdk-js](https://github.com/aws/aws-sdk-js)
 
   **The use case for PresignedURLs**
 
-  - If we want to allow third parties to have temporary access to an S3 object, the best option would be to use [Pre-signed URLs](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-presigned-urls.html. With presigned URLs, client applications can directly talk with S3 instead of talking to our media service and our media service proxy-ing the requests to S3.
+  - If we want to allow third parties to have temporary access to an S3 object, the best option would be to use [Pre-signed URLs](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-presigned-urls.html). With presigned URLs, client applications can directly talk to S3 instead of talking to our media service and our media service proxy-ing the requests to S3.
 
-  For instance, in our illustration below, all requests from the client pass thru our media service, and our media service talks to S3 on client's behalf. Obviously, this introduces unnecessary load and cost on or media service.
+  - For instance, in our illustration below, all requests from the client pass through our media service, and our media service talks to S3 on client's behalf. Obviously, this introduces unnecessary load and cost on or media service; imagine all the files that will pass through it, and the bandwidth and resources it must keep to support upload and downloads.
 
-![Pre-signed URLs](media-service-as-proxy.png)
+    ![Pre-signed URLs](media-service-as-proxy.png)
 
-  Presigned URLs, resolve this issue; our media service just generates a presigned URL, gives them to client, then client directly accesses S3.
+  - Presigned URLs, resolve this issue. Our media service just generates a presigned URL, gives them to client, then client directly upload or download S3.
 
-![Pre-signed URLs](presigned-urls-flow.png)
+    ![Pre-signed URLs](presigned-urls-flow.png)
 
   - We can use **SDKs** or **AWS CLI** to generate presigned-urls.
-
-**Some Notes**
