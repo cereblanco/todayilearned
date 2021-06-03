@@ -77,7 +77,7 @@ There are three possible ways to access/manage S3 and its objects
                     "Key": object_key,
                     # Uncomment to use optional parameters
                     # "ContentDisposition": f"attachment;filename={download_filename}",
-                    # "ContentType": content_type,
+                    "ContentType": content_type,
                 },
                 ExpiresIn=expires_in, 
                 HttpMethod="put", 
@@ -94,7 +94,9 @@ There are three possible ways to access/manage S3 and its objects
 
     # Upload a file using a presigned url in our client app
     with open('mountain.png', 'rb') as f:
-        result = requests.put(upload_url, data=f)
+        # You need to update the headers with the same `Params` you used in generating the presigned url
+        headers = {'content-type': 'image/png','content-disposition': 'attachment;filename=new_filename_here.png' }
+        result = requests.put(url, headers=headers, data=f)
         print(result, result.content)
 
     ```
