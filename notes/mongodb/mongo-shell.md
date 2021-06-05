@@ -83,7 +83,7 @@ db.projects.update({"_id": ObjectId("5ebce8d6c94bcf9b83e2f21c")}, {"name":"Updat
 
 ```
 
-Add new field without overwriting the existing fields! operative word: `$set`
+Add new field without overwriting the existing fields! use `$set`
 ```javascript
 db.projects.update(
     {"_id": ObjectId("5ebce8d6c94bcf9b83e2f21c")},
