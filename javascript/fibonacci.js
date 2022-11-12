@@ -1,8 +1,8 @@
 /**
 Different Fibonacci Implementations in Javascript
 1. Recursive fibonacci
-2. Memoize version of recursive fibonacci -> improves recursive solution by using cache
-3. Bottom-up implementation of fibonacci -> optimized! solves `maximum recursion depth exceeded` in 1 & 2
+2. Memoized version of recursive fibonacci -> improves recursive solution by using a cache
+3. Bottom-up implementation of fibonacci -> solves "maximum recursion depth exceeded" error in solutions 1 & 2
 4. Bottom-up implementation of fibonacci that uses constant space complexity
 */
 
